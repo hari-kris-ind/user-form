@@ -40,6 +40,16 @@
         button:hover {
             background-color: #45a049;
         }
+        .output-container {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #e7f7e7;
+            display: none; /* Hide the output initially */
+        }
+        .output-container h3 {
+            margin-top: 0;
+        }
     </style>
 </head>
 <body>
@@ -60,8 +70,16 @@
         </form>
     </div>
 
+    <!-- Output container where the user data will be displayed -->
+    <div class="output-container" id="outputContainer">
+        <h3>Submitted Data</h3>
+        <p><strong>Name:</strong> <span id="outputName"></span></p>
+        <p><strong>Age:</strong> <span id="outputAge"></span></p>
+        <p><strong>Location:</strong> <span id="outputLocation"></span></p>
+    </div>
+
     <script>
-        // JavaScript to handle form submission and collect input
+        // JavaScript to handle form submission and display the data on the webpage
         document.getElementById('userForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form from actually submitting and reloading the page
 
@@ -70,14 +88,17 @@
             const age = document.getElementById('age').value;
             const location = document.getElementById('location').value;
 
-            // Log the values to the console (you can also do other things like sending the data to a server)
-            console.log("Name: " + name);
-            console.log("Age: " + age);
-            console.log("Location: " + location);
+            // Display the values back to the user
+            document.getElementById('outputName').textContent = name;
+            document.getElementById('outputAge').textContent = age;
+            document.getElementById('outputLocation').textContent = location;
+
+            // Show the output container
+            document.getElementById('outputContainer').style.display = 'block';
 
             // Optionally, display a message to the user
             alert('Thank you for submitting the form!');
-
+            
             // Reset the form after submission
             document.getElementById('userForm').reset();
         });
